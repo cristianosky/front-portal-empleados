@@ -1,10 +1,19 @@
 <div class="body">
     <div class="login-container">
     <h2>Portal de Empleado</h2>
+
     <form [formGroup]="loginForm">
       <div class="form-group">
         <label for="email">Correo corporativo</label>
+
         <input type="email" id="email" formControlName="email" placeholder="ejemplo@empresa.com" required>
+
+        @if (isValidField('email')) {
+          <span class="text-danger">
+            {{ getFieldError('email') }}
+          </span>
+        }
+
       </div>
       <div class="form-group">
         <label for="password">Contraseña</label>

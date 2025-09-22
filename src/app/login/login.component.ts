@@ -13,10 +13,41 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  isValidField(fieldName: string): boolean | null {
+    return (
+      this.loginForm.controls[fieldName].errors &&
+      this.loginForm.controls[fieldName].touched
+    );
+  }
+
+
+  getFieldError(fieldName: string): string | null {
+  const control = this.loginForm.get(fieldName);
+  if (!control || !control.errors) return null;
+
+  const errors = control.errors;
+
+  if (errors['required']) {
+    return 'Este campo es requerido';
+  }
+
+  if (errors['pattern']) {
+    return 'Debe ser un correo electrónico válido';
+  }
+
+  return null;
+}
+
+
   private fb = inject(FormBuilder);
 
   loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [
+      Validators.required,
+      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+      ]
+    ],
     password: ['', [Validators.required]]
   });
 
