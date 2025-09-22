@@ -16,7 +16,7 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
 
   loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   });
 
@@ -24,7 +24,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       // Handle login logic
       console.log(this.loginForm.value);
-      
+
     }
   }
 }
