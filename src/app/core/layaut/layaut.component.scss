@@ -1,0 +1,26 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.custom-sidenav {
+  width: 60px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3); // 👉 sombra a la derecha
+}
+
+.custom-sidenav:hover {
+  width: 200px;
+}
+
+mat-sidenav-content .content {
+  padding: 20px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+}

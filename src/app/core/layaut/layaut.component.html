@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav  class="custom-sidenav"  mode="side" [opened]="true" (mouseenter)="sidenavOpened = true" (mouseleave)="sidenavOpened = false">
+
+    <mat-nav-list>
+      <a class="nav-link" mat-list-item href="#">
+        <mat-icon>home</mat-icon>
+        @if(sidenavOpened){
+            Inicio
+        }
+      </a>
+      <a class="nav-link" mat-list-item href="#">
+        <mat-icon>person</mat-icon>
+        @if(sidenavOpened){
+            Perfil
+        }
+      </a>
+      <a class="nav-link" mat-list-item href="#">
+        <mat-icon>settings</mat-icon>
+        @if (sidenavOpened) {
+            Configuración
+        }
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">
+      <h1>Mi app</h1>
+      <p>Contenido principal aquí...</p>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
