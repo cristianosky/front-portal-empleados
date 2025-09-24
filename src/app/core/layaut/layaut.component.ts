@@ -13,4 +13,13 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class LayautComponent {
   sidenavOpened = true;
+
+  cerrarSesion() {
+    // Lógica para cerrar sesión
+    localStorage.removeItem('token');
+    // Eliminar user 
+    localStorage.removeItem('user');
+    // Redirigir al usuario a la página de inicio de sesión u otra página
+    window.location.href = '/login';
+  }
 }

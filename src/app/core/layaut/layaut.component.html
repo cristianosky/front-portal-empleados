@@ -1,23 +1,32 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav  class="custom-sidenav"  mode="side" [opened]="true" (mouseenter)="sidenavOpened = true" (mouseleave)="sidenavOpened = false">
+  <mat-sidenav #sidenav class="custom-sidenav" mode="side" [opened]="true" (mouseenter)="sidenavOpened = true"
+    (mouseleave)="sidenavOpened = false">
 
-    <mat-nav-list>
+    <mat-nav-list class="nav-list">
       <a class="nav-link" mat-list-item href="#">
         <i class="fa-solid fa-house"></i>
         @if(sidenavOpened){
-            Inicio
+          Inicio
         }
       </a>
       <a class="nav-link" mat-list-item href="#">
         <i class="fa-solid fa-user"></i>
         @if(sidenavOpened){
-            Perfil
+          Perfil
         }
       </a>
       <a class="nav-link" mat-list-item href="#">
         <i class="fa-solid fa-gear"></i>
         @if (sidenavOpened) {
-            Configuración
+          Configuración
+        }
+      </a>
+      <div style="flex: 1;"></div>
+
+      <a class="nav-link" mat-list-item (click)="cerrarSesion()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        @if(sidenavOpened){
+          Cerrar sesión
         }
       </a>
     </mat-nav-list>

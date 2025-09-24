@@ -5,6 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 // import {MatHintModule} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoginService } from '../services/auth/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  private loginService = inject(LoginService);
 
   isValidField(fieldName: string): boolean | null {
     return (
@@ -41,21 +44,32 @@ export class LoginComponent {
 
 
   private fb = inject(FormBuilder);
-
+  // Deje queado el usuario y contraseña para facilitar las pruebas puedes quitarlos y hacer mas validaciones si son necesarias
   loginForm: FormGroup = this.fb.group({
-    email: ['', [
+    email: ['admin@correo.com', [
       Validators.required,
       Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
       ]
     ],
-    password: ['', [Validators.required]]
+    password: ['123456', [Validators.required]]
   });
 
   onSubmit() {
     if (this.loginForm.valid) {
       // Handle login logic
-      console.log(this.loginForm.value);
-
+      const { email, password } = this.loginForm.value;
+      this.loginService.login(email, password).subscribe({
+        next: (response) => {
+          console.log('Login successful', response);
+          localStorage.setItem('token', (response as any).token);
+          localStorage.setItem('user', JSON.stringify((response as any).user));
+          // Redirect or perform other actions after successful login
+          window.location.href = '/'; // Example redirect
+        },
+        error: (error) => {
+          console.error('Login failed', error);
+        }
+      });
     }
   }
 }

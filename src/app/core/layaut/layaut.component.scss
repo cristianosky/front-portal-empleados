@@ -6,7 +6,7 @@
   width: 60px;
   transition: width 0.3s ease;
   overflow: hidden;
-   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3); // 👉 sombra a la derecha
+   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .custom-sidenav:hover {
@@ -18,9 +18,15 @@ mat-sidenav-content .content {
 }
 
 .nav-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    text-decoration: none;
-    color: inherit;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-list {
+  height: calc(100% - 16px);
+  display: flex;
+  flex-direction: column;
 }
