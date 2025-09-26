@@ -12,11 +12,29 @@
       <a class="nav-link" mat-list-item href="#">
         <i class="fa-solid fa-user"></i>
         @if(sidenavOpened){
-          Perfil
+          Mi Perfil
         }
       </a>
       <a class="nav-link" mat-list-item href="#">
-        <i class="fa-solid fa-gear"></i>
+        <i class="fa-solid fa-file"></i>
+        @if (sidenavOpened) {
+          Documentos
+        }
+      </a>
+      <a class="nav-link" mat-list-item href="#">
+        <i class="fa-solid fa-clipboard-user"></i>
+        @if (sidenavOpened) {
+          Asistencias
+        }
+      </a>
+      <a class="nav-link" mat-list-item href="#">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        @if (sidenavOpened) {
+          Nómina
+        }
+      </a>
+      <a class="nav-link" mat-list-item href="#">
+        <i class="fa-solid fa-bars"></i>
         @if (sidenavOpened) {
           Configuración
         }
@@ -38,3 +56,6 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<!--
+<app-dashboard /> -->
