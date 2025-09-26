@@ -1,2 +1,67 @@
-<h1>Mi app</h1>
-<p>Contenido principal aquí...</p>
+<div class="dashboard">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2 class="logo">Portal Empleado</h2>
+    <nav>
+      <ul>
+        <li><a href="#">🏠 Inicio</a></li>
+        <li><a href="#">👤 Mi Perfil</a></li>
+        <li><a href="#">🗂 Documentos</a></li>
+        <li><a href="#">📅 Asistencias</a></li>
+        <li><a href="#">💳 Nómina</a></li>
+        <li><a href="#">⚙️ Configuración</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <header class="header">
+      <h1>Bienvenido, Juan</h1>
+      <button class="logout-btn">Cerrar Sesión</button>
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Próxima Nómina</h3>
+        <p>30 Septiembre 2025</p>
+      </div>
+      <div class="card">
+        <h3>Días de Vacaciones</h3>
+        <p>12 disponibles</p>
+      </div>
+      <div class="card">
+        <h3>Asistencia</h3>
+        <p>92% este mes</p>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Últimos Documentos</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Certificado laboral</td>
+            <td>PDF</td>
+            <td>20/09/2025</td>
+            <td><button>Ver</button></td>
+          </tr>
+          <tr>
+            <td>Desprendible nómina</td>
+            <td>PDF</td>
+            <td>15/09/2025</td>
+            <td><button>Ver</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
