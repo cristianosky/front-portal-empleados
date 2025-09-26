@@ -1,24 +1,7 @@
 <div class="dashboard">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <h2 class="logo">Portal Empleado</h2>
-    <nav>
-      <ul>
-        <li><a href="#">🏠 Inicio</a></li>
-        <li><a href="#">👤 Mi Perfil</a></li>
-        <li><a href="#">🗂 Documentos</a></li>
-        <li><a href="#">📅 Asistencias</a></li>
-        <li><a href="#">💳 Nómina</a></li>
-        <li><a href="#">⚙️ Configuración</a></li>
-      </ul>
-    </nav>
-  </aside>
-
-  <!-- Main Content -->
   <main class="content">
     <header class="header">
       <h1>Bienvenido, Juan</h1>
-      <button class="logout-btn">Cerrar Sesión</button>
     </header>
 
     <section class="cards">
@@ -48,18 +31,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Certificado laboral</td>
-            <td>PDF</td>
-            <td>20/09/2025</td>
-            <td><button>Ver</button></td>
-          </tr>
-          <tr>
-            <td>Desprendible nómina</td>
-            <td>PDF</td>
-            <td>15/09/2025</td>
-            <td><button>Ver</button></td>
-          </tr>
+            @for (item of ultimosDocumentos(); track item.id) {
+                <tr>
+                  <td>{{ item.nombre }}</td>
+                  <td>{{ item.tipo }}</td>
+                  <td>{{ item.fecha }}</td>
+                  <td><button>Ver</button></td>
+                </tr>
+            }
         </tbody>
       </table>
     </section>
