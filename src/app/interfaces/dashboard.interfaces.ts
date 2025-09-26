@@ -6,5 +6,7 @@ export interface UltimosDocumentos {
 }
 
 export interface DataGeneral {
-    
+    proximaNomina: string;
+    diasVacaciones: number;
+    asistencias: number;
 }

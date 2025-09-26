@@ -4,43 +4,51 @@
       <h1>Bienvenido, Juan</h1>
     </header>
 
-    <section class="cards">
-      <div class="card">
-        <h3>Próxima Nómina</h3>
-        <p>30 Septiembre 2025</p>
-      </div>
-      <div class="card">
-        <h3>Días de Vacaciones</h3>
-        <p>12 disponibles</p>
-      </div>
-      <div class="card">
-        <h3>Asistencia</h3>
-        <p>92% este mes</p>
-      </div>
-    </section>
+    @if(!cargando()){
+        <section class="cards">
+            <div class="card">
+                <h3>Próxima Nómina</h3>
+                <p>{{ dataGeneral()?.proximaNomina }}</p>
+            </div>
+            <div class="card">
+                <h3>Días de Vacaciones</h3>
+                <p>{{ dataGeneral()?.diasVacaciones }} disponibles</p>
+            </div>
+            <div class="card">
+                <h3>Asistencia</h3>
+                <p>{{ dataGeneral()?.asistencias }}% este mes</p>
+            </div>
+            </section>
 
-    <section class="main-section">
-      <h2>Últimos Documentos</h2>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Tipo</th>
-            <th>Fecha</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-            @for (item of ultimosDocumentos(); track item.id) {
+            <section class="main-section">
+            <h2>Últimos Documentos</h2>
+            <table class="data-table">
+                <thead>
                 <tr>
-                  <td>{{ item.nombre }}</td>
-                  <td>{{ item.tipo }}</td>
-                  <td>{{ item.fecha }}</td>
-                  <td><button>Ver</button></td>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Acción</th>
                 </tr>
-            }
-        </tbody>
-      </table>
-    </section>
+                </thead>
+                <tbody>
+                    @for (item of ultimosDocumentos(); track item.id) {
+                        <tr>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.tipo }}</td>
+                        <td>{{ item.fecha }}</td>
+                        <td><button>Ver</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    }
+    @else{
+        <div class="loading">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            <p>Cargando datos...</p>
+        </div>
+    }
   </main>
 </div>
