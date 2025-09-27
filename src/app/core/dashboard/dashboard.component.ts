@@ -2,16 +2,19 @@ import { Component, inject, signal } from '@angular/core';
 import { DataGeneral, UltimosDocumentos } from '../../interfaces/dashboard.interfaces';
 import { Usuario } from '../../interfaces/layaut.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
+import { forkJoin } from 'rxjs';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [NgTemplateOutlet],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
   ultimosDocumentos = signal<UltimosDocumentos[]>([]);
   diasPorcentaje = signal<number | null>(null);
+  diasVacaciones = signal<number | null>(null);
   cargando = signal<boolean>(false);
   usuario = signal<Usuario>(JSON.parse(localStorage.getItem('user') || '{}'));
   private dashboard = inject(DashboardService)
@@ -24,7 +27,7 @@ export class DashboardComponent {
     ];
     setTimeout(() => {
       this.ultimosDocumentos.set(data);
-      this.cargando.set(false);
+      // this.cargando.set(false);
     }, 2000); // Simula una carga de datos de 2 segundos
   }
 
@@ -33,13 +36,16 @@ export class DashboardComponent {
   }
 
   obtenerPorcentajeDias() {
-    this.dashboard.obtenerPorcentajeDias().subscribe({
+    this.cargando.set(true);
+    forkJoin([this.dashboard.getDiasVacaciones(), this.dashboard.obtenerPorcentajeDias()]).subscribe({
       next: (resp) => {
-        console.log(resp);
-        this.diasPorcentaje.set(resp.percentage);
+        this.diasPorcentaje.set(resp[1].percentage);
+        this.diasVacaciones.set(resp[0].diasDisponibles);
+        this.cargando.set(false);
       },
       error: (err) => {
         console.log(err);
+        this.cargando.set(false);
       }
     });
   }

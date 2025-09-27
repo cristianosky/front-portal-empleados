@@ -135,3 +135,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.cargando {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+}
+
+.cargando p {
+  font-size: 19px;
+}

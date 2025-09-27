@@ -14,4 +14,8 @@ export class DashboardService {
     const mesActual = new Date().getMonth() + 1;
     return this.http.get<any>(`${this.urlApi}/attendance/monthly?year=${anioActual}&month=${mesActual}`);
   }
+
+  getDiasVacaciones() {
+    return this.http.get<any>(`${this.urlApi}/vacations/balance`);
+  }
 }

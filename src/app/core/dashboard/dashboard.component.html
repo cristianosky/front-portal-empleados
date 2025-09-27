@@ -1,54 +1,68 @@
 <div class="dashboard">
   <main class="content">
     <header class="header">
-      <h1>Bienvenido, {{ usuario()?.nombre }} {{ usuario()?.apellido }}</h1>
+      <h1>Bienvenido, {{ usuario().nombre  }} {{ usuario().apellido }}</h1>
     </header>
 
-    @if(!cargando()){
-        <section class="cards">
-            <div class="card">
+    <section class="cards">
+        <div class="card">
+            @if(cargando()){
+                <ng-container *ngTemplateOutlet="tempalteLoadig"></ng-container>
+            }
+            @else{
                 <h3>Próxima Nómina</h3>
                 <p>{{ '30/09/2025' }}</p>
-            </div>
-            <div class="card">
+            }
+        </div>
+        <div class="card">
+            @if(cargando()){
+                <ng-container *ngTemplateOutlet="tempalteLoadig"></ng-container>
+            }
+            @else{
                 <h3>Días de Vacaciones</h3>
-                <p>{{ '25' }} disponibles</p>
-            </div>
-            <div class="card">
+                <p>{{ diasVacaciones() }} disponibles</p>
+            }
+        </div>
+        <div class="card">
+            @if(cargando()){
+                <ng-container *ngTemplateOutlet="tempalteLoadig"></ng-container>
+            }
+            @else{
                 <h3>Asistencia</h3>
                 <p>{{ diasPorcentaje() }}% este mes</p>
-            </div>
-            </section>
-
-            <section class="main-section">
-            <h2>Últimos Documentos</h2>
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Fecha</th>
-                    <th>Acción</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @for (item of ultimosDocumentos(); track item.id) {
-                        <tr>
-                        <td>{{ item.nombre }}</td>
-                        <td>{{ item.tipo }}</td>
-                        <td>{{ item.fecha }}</td>
-                        <td><button>Ver</button></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </section>
-    }
-    @else{
-        <div class="loading">
-            <i class="fa-solid fa-spinner fa-spin"></i>
-            <p>Cargando datos...</p>
+            }
         </div>
-    }
+        </section>
+
+        <section class="main-section">
+        <h2>Últimos Documentos</h2>
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+                @for (item of ultimosDocumentos(); track item.id) {
+                    <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ item.tipo }}</td>
+                    <td>{{ item.fecha }}</td>
+                    <td><button>Ver</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
   </main>
 </div>
+
+<ng-template #tempalteLoadig>
+    <div class="cargando">
+        <h3>Cargando...</h3>
+        <p><i class="fa-solid fa-spinner fa-spin"></i></p>
+    </div>
+</ng-template>
