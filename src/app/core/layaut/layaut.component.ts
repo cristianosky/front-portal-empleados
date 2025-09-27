@@ -6,11 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterOutlet } from '@angular/router';
 import { DashboardComponent } from "../dashboard/dashboard.component";
 
-interface probando {
-  th: string,
-  td: string
-}
-
 
 @Component({
   selector: 'app-layaut',
@@ -20,7 +15,6 @@ interface probando {
 })
 export class LayautComponent {
   sidenavOpened = true;
-
   cerrarSesion() {
     // Lógica para cerrar sesión
     localStorage.removeItem('token');
@@ -29,13 +23,4 @@ export class LayautComponent {
     // Redirigir al usuario a la página de inicio de sesión u otra página
     window.location.href = '/login';
   }
-
-  newSingal = signal<probando[]>([]);
-
-
-  constructor() {
-    this.newSingal.set([])
-  }
-
-
 }

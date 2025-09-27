@@ -1,22 +1,22 @@
 <div class="dashboard">
   <main class="content">
     <header class="header">
-      <h1>Bienvenido, Juan</h1>
+      <h1>Bienvenido, {{ usuario()?.nombre }} {{ usuario()?.apellido }}</h1>
     </header>
 
     @if(!cargando()){
         <section class="cards">
             <div class="card">
                 <h3>Próxima Nómina</h3>
-                <p>{{ dataGeneral()?.proximaNomina }}</p>
+                <p>{{ '30/09/2025' }}</p>
             </div>
             <div class="card">
                 <h3>Días de Vacaciones</h3>
-                <p>{{ dataGeneral()?.diasVacaciones }} disponibles</p>
+                <p>{{ '25' }} disponibles</p>
             </div>
             <div class="card">
                 <h3>Asistencia</h3>
-                <p>{{ dataGeneral()?.asistencias }}% este mes</p>
+                <p>{{ diasPorcentaje() }}% este mes</p>
             </div>
             </section>
 

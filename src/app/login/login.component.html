@@ -19,7 +19,9 @@
         <label for="password">Contraseña</label>
         <input type="password" id="password" formControlName="password" placeholder="********" required>
       </div>
-      <button type="submit" class="login-btn" (click)="onSubmit()">Iniciar Sesión</button>
+      <button type="submit" [disabled]="loading()" class="login-btn" (click)="onSubmit()">
+        {{ loading() ? 'Cargando...' : 'Iniciar sesión' }}
+      </button>
       <div class="extra-links">
         <a href="#">¿Olvidaste tu contraseña?</a>
       </div>

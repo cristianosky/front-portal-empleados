@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../services/auth/login.service';
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,11 @@ import { LoginService } from '../services/auth/login.service';
 export class LoginComponent {
 
   private loginService = inject(LoginService);
+  private _snackBar = inject(MatSnackBar);
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
+  loading = signal(false);
 
   isValidField(fieldName: string): boolean | null {
     return (
@@ -57,6 +63,7 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       // Handle login logic
+      this.loading.set(true);
       const { email, password } = this.loginForm.value;
       this.loginService.login(email, password).subscribe({
         next: (response) => {
@@ -67,9 +74,19 @@ export class LoginComponent {
           window.location.href = '/'; // Example redirect
         },
         error: (error) => {
-          console.error('Login failed', error);
+          // console.error('Login failed', error);
+          this.openSnackBar((error.error?.msg || 'Unknown error'));
         }
       });
     }
+  }
+
+  openSnackBar(msg: string) {
+    this._snackBar.open(msg, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 2000
+    });
+    this.loading.set(false);
   }
 }
