@@ -19,6 +19,7 @@ export class DashboardComponent {
   cargando = signal<boolean>(false);
   proximaNomina = this.getProximaNomina();
   usuario = signal<Usuario>(JSON.parse(localStorage.getItem('user') || '{}'));
+  
   private dashboard = inject(DashboardService)
 
   constructor() {
