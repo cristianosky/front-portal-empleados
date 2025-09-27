@@ -3,11 +3,12 @@ import { DataGeneral, UltimosDocumentos } from '../../interfaces/dashboard.inter
 import { Usuario } from '../../interfaces/layaut.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
 import { forkJoin } from 'rxjs';
-import { NgTemplateOutlet } from '@angular/common';
+import { DatePipe, NgTemplateOutlet } from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, DatePipe, MatButtonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -16,6 +17,7 @@ export class DashboardComponent {
   diasPorcentaje = signal<number | null>(null);
   diasVacaciones = signal<number | null>(null);
   cargando = signal<boolean>(false);
+  proximaNomina = this.getProximaNomina();
   usuario = signal<Usuario>(JSON.parse(localStorage.getItem('user') || '{}'));
   private dashboard = inject(DashboardService)
 
@@ -27,7 +29,6 @@ export class DashboardComponent {
     ];
     setTimeout(() => {
       this.ultimosDocumentos.set(data);
-      // this.cargando.set(false);
     }, 2000); // Simula una carga de datos de 2 segundos
   }
 
@@ -49,4 +50,19 @@ export class DashboardComponent {
       }
     });
   }
+
+  getProximaNomina(): Date {
+    const hoy = new Date();
+    const mes = hoy.getMonth();
+    const año = hoy.getFullYear();
+
+    let proxima = new Date(año, mes, 30);
+
+    if (proxima <= hoy) {
+      proxima = new Date(año, mes + 1, 30);
+    }
+
+    return proxima;
+  }
+
 }

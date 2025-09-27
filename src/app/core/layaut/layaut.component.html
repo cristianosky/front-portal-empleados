@@ -3,13 +3,13 @@
     (mouseleave)="sidenavOpened = false">
 
     <mat-nav-list class="nav-list">
-      <a class="nav-link" mat-list-item href="#">
+      <a class="nav-link" mat-list-item routerLink="/">
         <i class="fa-solid fa-house"></i>
         @if(sidenavOpened){
           Inicio
         }
       </a>
-      <a class="nav-link" mat-list-item href="#">
+      <a class="nav-link" mat-list-item routerLink="/perfil">
         <i class="fa-solid fa-user"></i>
         @if(sidenavOpened){
           Mi Perfil
@@ -21,7 +21,7 @@
           Documentos
         }
       </a>
-      <a class="nav-link" mat-list-item href="#">
+      <a class="nav-link" mat-list-item routerLink="/asistencia">
         <i class="fa-solid fa-clipboard-user"></i>
         @if (sidenavOpened) {
           Asistencias
