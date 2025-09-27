@@ -1,1 +1,43 @@
-<p>asistencia works!</p>
+<div class="calendar">
+  <div class="header">
+    <button (click)="prevMonth()">←</button>
+    <span>{{ currentDate | date:'MMMM yyyy' }}</span>
+    <button (click)="nextMonth()">→</button>
+  </div>
+
+ <div class="actions">
+  <button (click)="markCheckIn()" [disabled]="hasCheckedIn">Check-in</button>
+  <button (click)="markCheckOut()" [disabled]="!hasCheckedIn || hasCheckedOut">
+    Check-out
+  </button>
+</div>
+
+  <div class="grid-weekdays">
+    <div *ngFor="let w of weekdays" class="weekday">{{ w }}</div>
+  </div>
+
+  <div class="grid-days">
+    <div *ngFor="let d of daysInMonth"
+         class="day"
+         (click)="toggleAttendance(d.ymd)"
+         [ngClass]="{
+           'present': d.state === 'present',
+           'absent': d.state === 'absent',
+           'holiday': d.isHoliday,
+           'today': d.isToday
+         }">
+      <div class="date-num">{{ d.date.getDate() }}</div>
+      <div *ngIf="d.isHoliday" class="note">Festivo</div>
+      <div *ngIf="d.isWeekend" class="badge">Sáb/Dom</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch present"></span> Presente</div>
+    <div class="legend-item"><span class="legend-swatch absent"></span> Ausente</div>
+    <div class="legend-item"><span class="legend-swatch holiday"></span> Festivo</div>
+    <div class="legend-item"><span class="legend-swatch today"></span> Hoy</div>
+  </div>
+</div>
+
+
