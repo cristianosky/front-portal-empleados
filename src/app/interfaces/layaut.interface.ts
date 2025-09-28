@@ -4,4 +4,5 @@ export interface Usuario {
     id: number;
     nombre: string;
     role: 'admin' | 'user';
+    photo: string
 }

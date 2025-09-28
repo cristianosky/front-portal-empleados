@@ -2,19 +2,19 @@
   <mat-sidenav #sidenav class="custom-sidenav" mode="side" [opened]="true" (mouseenter)="sidenavOpened = true"
     (mouseleave)="sidenavOpened = false">
 
-    <mat-nav-list class="nav-list">
+    <mat-nav-list class="nav-list" [ngClass]="{'text-center': !sidenavOpened}">
       <a class="nav-link" mat-list-item routerLink="/">
         <i class="fa-solid fa-house"></i>
         @if(sidenavOpened){
           Inicio
         }
       </a>
-      <a class="nav-link" mat-list-item routerLink="/perfil">
+      <!-- <a class="nav-link" mat-list-item routerLink="/perfil">
         <i class="fa-solid fa-user"></i>
         @if(sidenavOpened){
           Mi Perfil
         }
-      </a>
+      </a> -->
       <a class="nav-link" mat-list-item href="#">
         <i class="fa-solid fa-file"></i>
         @if (sidenavOpened) {

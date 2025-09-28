@@ -5,16 +5,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { DashboardComponent } from "../dashboard/dashboard.component";
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-layaut',
-  imports: [MatSidenavModule, MatListModule, MatIconModule, MatButtonModule, RouterOutlet, DashboardComponent, RouterLink],
+  imports: [MatSidenavModule, MatListModule, MatIconModule, MatButtonModule, RouterOutlet, DashboardComponent, RouterLink, CommonModule],
   templateUrl: './layaut.component.html',
   styleUrls: ['./layaut.component.scss']
 })
 export class LayautComponent {
-  sidenavOpened = true;
+  sidenavOpened = false;
   cerrarSesion() {
     // Lógica para cerrar sesión
     localStorage.removeItem('token');

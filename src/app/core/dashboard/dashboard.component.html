@@ -1,7 +1,10 @@
 <div class="dashboard">
     <div class="content">
         <div class="header">
-            <h1>Bienvenido, {{ usuario().nombre }} {{ usuario().apellido }}</h1>
+            <h1>
+                Bienvenido, {{ usuario().nombre }} {{ usuario().apellido }} <i class="fa-solid fa-user-pen" (click)="openDialog()" style="cursor: pointer;"></i>
+            </h1>
+            
         </div>
 
         <div class="cards">

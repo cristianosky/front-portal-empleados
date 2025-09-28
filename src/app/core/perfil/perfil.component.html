@@ -1,1 +1,44 @@
-<p>perfil works!</p>
+<div class="perfil-container">
+    <mat-card class="perfil-card">
+        <h2>Editar Perfil</h2>
+
+        <!-- Foto de perfil -->
+        <div class="photo-container">
+            @if (user.photo) {
+            <img [src]="user.photo" alt="Foto de perfil" class="profile-photo" />
+            } 
+            @else {
+                <img src="myAvatar.svg" style="width: 71px; height: 99px;" alt=""/>
+            }
+
+            <!-- <button mat-stroked-button color="primary">Cambiar Foto</button> -->
+        </div>
+
+        <!-- Formulario -->
+        <form>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput [(ngModel)]="user.nombre" name="firstName" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Apellido</mat-label>
+                <input matInput [(ngModel)]="user.apellido" name="lastName" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" [(ngModel)]="user.email" name="email" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Cambiar Clave</mat-label>
+                <input matInput type="password" [(ngModel)]="newPassword" name="newPassword" />
+            </mat-form-field>
+
+            <div class="button-container">
+                <button mat-raised-button color="primary" (click)="actualizarPerfil()" style="width: 100%;">Guardar</button>
+            </div>
+        </form>
+    </mat-card>
+</div>
